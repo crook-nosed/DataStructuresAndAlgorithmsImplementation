@@ -11,6 +11,7 @@ void popBack();
 struct node * find(int key);
 bool boolfind(int key);
 void erase(int key);
+void addAfter(struct node * node1,int key);
 struct node
 {
 	int data;
@@ -134,6 +135,15 @@ void traverse()
 		ptr=ptr->next;
 	}
 }
+void addAfter(struct node* node1,int key)
+{
+	struct node * newNode= (struct node *)malloc(sizeof(struct node));
+	newNode->data=key;
+	newNode->next=node1->next;
+	node1->next=newNode;
+	if(newNode->next==NULL)
+		tail=newNode;
+}
 int topFront()
 {
 	return head->data;
@@ -190,11 +200,12 @@ int main()
 	traverse();
 	printf("\n");
 	//erase(7);
-	traverse();
+	
 	for(int i=0;i<5;i++)
 		popBack();
 	traverse();
 	printf("\n");
+	addAfter(head,9);
 	popFront();
 	traverse();
 	

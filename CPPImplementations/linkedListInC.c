@@ -1,10 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
-void PushFront(int i);// pushes or inserts item in the front of the list
-int TopFront(); //returns front item i.e first item in the linked list
+void pushFront(int i);// pushes or inserts item in the front of the list
+int topFront(); //returns front item i.e first item in the linked list
 void traverse();// displays the current list
 void popFront();//deletes the front element of linked list
 void pushBack(int i);
+int topBack();
+void popBack();   
 struct node
 {
 	int data;
@@ -25,7 +27,7 @@ void pushBack(int i)
 		
 	
 }
-void PushFront(int i)
+void pushFront(int i)
 {
 	struct node * newNode =(struct node*)malloc(sizeof(struct node));
 	newNode->data=i;
@@ -42,8 +44,28 @@ void popFront()
 	if(head==NULL)
 		tail=NULL;
 }
+void popBack()
+{
+	struct node *ptr=head;
+	if(head==NULL)
+		printf("No element to pop\n");
+	if(head->next==NULL)
+	{
+		head=NULL;
+		tail=NULL;
+	}
+	while(ptr->next->next != NULL)
+	{
+		ptr=ptr->next;
+		
+	}
+	tail=ptr;
+	ptr->next=NULL;
+}
 void traverse()
 {
+	if (head==NULL)
+		printf("empty list. add elements");
 	struct node * ptr =  head;
 	while(ptr!=NULL)
 	{
@@ -51,12 +73,17 @@ void traverse()
 		ptr=ptr->next;
 	}
 }
-int TopFront()
+int topFront()
 {
 	return head->data;
 }
+int topBack()
+{
+	return tail->data;
+}
 int main()
 {
+	/*
 	PushFront(1);
 	PushFront(2);
 	PushFront(3);
@@ -73,5 +100,35 @@ int main()
 	pushBack(3);
 	//printf("%d\n",TopFront());
 	traverse();
+	popBack();
+	printf("\n");
+	traverse();
+	popBack();
+	popFront();
+	printf("\n");
+	traverse();
+	popBack();
+	popBack();
+    traverse();
+	popFront();
+	traverse();
+	printf("\n"); */
+	for(int i=1;i<=10;i++)
+		pushBack(i);
+	traverse();
+	printf("\n");
+	for(int i=0;i<4;i++)
+		popBack();
+	traverse();
+	printf("\n");
+	for(int i=0;i<5;i++)
+		popBack();
+	traverse();
+	popFront();
+	traverse();
+	
+	
+	
+	
 	return 0;
 }

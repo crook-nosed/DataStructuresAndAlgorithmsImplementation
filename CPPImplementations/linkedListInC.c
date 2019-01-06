@@ -1,12 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 void pushFront(int i);// pushes or inserts item in the front of the list
 int topFront(); //returns front item i.e first item in the linked list
 void traverse();// displays the current list
 void popFront();//deletes the front element of linked list
 void pushBack(int i);
 int topBack();
-void popBack();   
+void popBack();
+struct node * find(int key);
+bool boolfind(int key);
+void erase(int key);
 struct node
 {
 	int data;
@@ -43,6 +47,63 @@ void popFront()
 	head=head->next;
 	if(head==NULL)
 		tail=NULL;
+}
+bool boolfind(int key)
+{
+	struct node * boolfinder = head;
+	if(head == NULL)
+		return false;
+	while(boolfinder->next!=NULL)
+	{
+		if(boolfinder->data==key)
+			return true;
+	}
+	return false;
+}
+struct node *find(int key)
+{
+	struct node * finder= head;
+	if (head==NULL)
+		return NULL;
+	while(finder->next!=NULL)
+	{
+		if(finder->data==key)
+		{
+			return finder;
+		}
+		finder=finder->next;
+	}
+	return NULL;
+}
+void erase(int key)
+{
+	if(boolfind(key))
+	{
+		if (head->data==key)
+		{
+			popFront();
+			return;
+		}
+		if(tail->data==key)
+		{
+			popBack();
+			return;
+		}
+		struct node * finderprev = head;
+		struct node * findererase = head->next;
+		while(findererase!=NULL)
+		{
+			if(findererase->data==key)
+			{
+				finderprev->next=findererase->next;
+				break;
+			}
+			findererase=findererase->next;
+			finderprev=finderprev->next;
+		}
+	}
+	else
+		printf("There is no such key to erase");
 }
 void popBack()
 {
@@ -114,16 +175,26 @@ int main()
 	traverse();
 	printf("\n"); */
 	for(int i=1;i<=10;i++)
-		pushBack(i);
+		pushFront(i);
 	traverse();
+	
 	printf("\n");
+	if (find(7)!=NULL)
+		printf("%d present\n",find(7)->data);
+	else
+		printf("key not found\n");
+
+	
 	for(int i=0;i<4;i++)
 		popBack();
 	traverse();
 	printf("\n");
+	//erase(7);
+	traverse();
 	for(int i=0;i<5;i++)
 		popBack();
 	traverse();
+	printf("\n");
 	popFront();
 	traverse();
 	

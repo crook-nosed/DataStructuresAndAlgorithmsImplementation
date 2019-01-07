@@ -11,7 +11,9 @@ void popBack();
 struct node * find(int key);
 bool boolfind(int key);
 void erase(int key);
-void addAfter(struct node * node1,int key);
+//void addAfter(struct node * node1,int key);
+void addBefore(int beforekey,int key);
+void addAfter(int afterkey,int key);
 struct node
 {
 	int data;
@@ -141,7 +143,7 @@ void traverse()
 		ptr=ptr->next;
 	}
 }
-void addAfter(struct node* node1,int key)
+/*void addAfter(struct node* node1,int key)
 {
 	struct node * newNode= (struct node *)malloc(sizeof(struct node));
 	newNode->data=key;
@@ -149,7 +151,55 @@ void addAfter(struct node* node1,int key)
 	node1->next=newNode;
 	if(newNode->next==NULL)
 		tail=newNode;
+}*/
+void addAfter(int afterkey,int key)
+{
+	struct node * newNode =(struct node *)malloc(sizeof(struct node));
+	newNode->data=key;
+	struct node * ptr = head;
+	while(ptr!=NULL)
+	{
+		if(ptr->data==afterkey)
+		{
+			newNode->next=ptr->next;
+			ptr->next=newNode;
+			if(newNode->next==NULL)
+				tail=newNode;
+			return;
+		}
+		ptr=ptr->next;
+	}
+	
+	printf("There is no %d key to add %d key before it.",afterkey,key);
+	
 }
+void addBefore(int keybefore,int key)
+{
+	
+	if(head->data==keybefore)
+	{
+		pushFront(key);
+		return;
+	}
+	struct node * newNode1 = (struct node*)malloc(sizeof(struct node));
+    newNode1->data=key;
+	struct node *ptr = head->next;
+	struct node *ptrprev = head;
+	while(ptr!=NULL)
+	{
+		if(ptr->data==keybefore)
+		{
+			newNode1->next=ptr;
+			ptrprev->next=newNode1;
+			return;
+		}
+		ptr=ptr->next;
+		ptrprev=ptrprev->next;
+	}
+	printf("There is no %d key to add %d key before it.",keybefore,key);
+		
+	}
+
 int topFront()
 {
 	return head->data;
@@ -205,15 +255,21 @@ int main()
 		popBack();
 	traverse();
 	printf("\n");
+	addBefore(7,8);
+	traverse();
+	printf("\n");
 	erase(7);
 	
 	for(int i=0;i<5;i++)
 		popBack();
 	traverse();
 	printf("\n");
-	addAfter(head,9);
-	popFront();
+	addAfter(10,9);
+	//popFront();
 	traverse();
+	//addBefore(9,10);
+	//printf("\n");
+	//traverse();
 	
 	
 	

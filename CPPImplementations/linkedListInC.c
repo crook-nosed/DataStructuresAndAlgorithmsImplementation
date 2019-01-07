@@ -51,13 +51,18 @@ void popFront()
 }
 bool boolfind(int key)
 {
-	struct node * boolfinder = head;
 	if(head == NULL)
 		return false;
+	struct node * boolfinder = head;
+	
 	while(boolfinder->next!=NULL)
 	{
 		if(boolfinder->data==key)
+		{
 			return true;
+		}
+		boolfinder=boolfinder->next;
+			
 	}
 	return false;
 }
@@ -97,6 +102,7 @@ void erase(int key)
 			if(findererase->data==key)
 			{
 				finderprev->next=findererase->next;
+				free(findererase);
 				break;
 			}
 			findererase=findererase->next;
@@ -195,11 +201,11 @@ int main()
 		printf("key not found\n");
 
 	
-	for(int i=0;i<4;i++)
+	for(int i=0;i<3;i++)
 		popBack();
 	traverse();
 	printf("\n");
-	//erase(7);
+	erase(7);
 	
 	for(int i=0;i<5;i++)
 		popBack();

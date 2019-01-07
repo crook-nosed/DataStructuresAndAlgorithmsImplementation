@@ -10,6 +10,7 @@ int topBack();
 void popBack();
 struct node * find(int key);
 bool boolfind(int key);
+bool empty();
 void erase(int key);
 //void addAfter(struct node * node1,int key);
 void addBefore(int beforekey,int key);
@@ -21,6 +22,10 @@ struct node
 };
 struct node * head = NULL;
 struct node *tail = NULL;
+bool empty()
+{
+	return head==NULL;
+}
 void pushBack(int i)
 {
 	struct node * newNode2 =(struct node *)malloc(sizeof(struct node));
@@ -282,7 +287,10 @@ int main()
 	printf("\n");
 	traverse();
 	popFront();
-	popFront();
+	popBack();
+	if(empty())
+		printf("linked list is empty.\n");
+	
 	
 	
 	

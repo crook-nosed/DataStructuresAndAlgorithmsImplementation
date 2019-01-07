@@ -240,7 +240,7 @@ int main()
 	popFront();
 	traverse();
 	printf("\n"); */
-	for(int i=1;i<=10;i++)
+	/*for(int i=1;i<=10;i++)
 		pushFront(i);
 	traverse();
 	
@@ -270,7 +270,19 @@ int main()
 	//addBefore(9,10);
 	//printf("\n");
 	//traverse();
-	
+	*/
+	for(int i=10;i>=1;i--)
+		pushFront(i);
+	traverse();
+	popFront();
+	printf("\n");
+    traverse();	
+	for(int i=0;i<8;i++)
+		popFront();
+	printf("\n");
+	traverse();
+	popFront();
+	popFront();
 	
 	
 	

@@ -170,6 +170,9 @@ void addAfter(int afterkey,int key)
 		if(ptr->data==afterkey)
 		{
 			newNode->next=ptr->next;
+			newNode->prev=ptr;
+			if(newNode->next!=NULL)
+				ptr->next->prev=newNode;
 			ptr->next=newNode;
 			if(newNode->next==NULL)
 				tail=newNode;
@@ -192,17 +195,20 @@ void addBefore(int keybefore,int key)
 	struct node * newNode1 = (struct node*)malloc(sizeof(struct node));
     newNode1->data=key;
 	struct node *ptr = head->next;
-	struct node *ptrprev = head;
 	while(ptr!=NULL)
 	{
 		if(ptr->data==keybefore)
 		{
 			newNode1->next=ptr;
-			ptrprev->next=newNode1;
+			newNode1->prev=ptr->prev;
+			if(newNode1->prev!=NULL)
+			ptr->prev->next=newNode1;
+			
+			if(newNode1->prev==NULL)
+				head=newNode1;
 			return;
 		}
 		ptr=ptr->next;
-		ptrprev=ptrprev->next;
 	}
 	printf("There is no %d key to add %d key before it.",keybefore,key);
 		
@@ -247,6 +253,9 @@ int main()
 	printf("\n");
 	traverse();
 	erase(3);
+	printf("\n");
+	traverse();
+	addBefore(2,3);
 	printf("\n");
 	traverse();
 	

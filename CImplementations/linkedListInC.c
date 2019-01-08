@@ -50,8 +50,10 @@ void pushFront(int i)
 }
 void popFront()
 {
-	if (head==NULL)
+	if (empty()){
 		printf("No element to pop\n");
+		return;
+	}
 	head=head->next;
 	if(head==NULL)
 		tail=NULL;
@@ -121,9 +123,11 @@ void erase(int key)
 }
 void popBack()
 {
-	struct node *ptr=head;
-	if(head==NULL)
+	if(empty()){
 		printf("No element to pop\n");
+		return;
+	}
+	struct node *ptr=head;
 	if(head->next==NULL)
 	{
 		head=NULL;
@@ -139,7 +143,7 @@ void popBack()
 }
 void traverse()
 {
-	if (head==NULL)
+	if (empty())
 		printf("empty list. add elements");
 	struct node * ptr =  head;
 	while(ptr!=NULL)
@@ -207,10 +211,20 @@ void addBefore(int keybefore,int key)
 
 int topFront()
 {
+	if(empty())
+	{
+		printf("No element at the front top.\n");
+		return 0;
+	}
 	return head->data;
 }
 int topBack()
 {
+	if(empty())
+	{
+		printf("No element at the back top.\n");
+		return 0;
+	}
 	return tail->data;
 }
 int main()
@@ -275,7 +289,7 @@ int main()
 	//addBefore(9,10);
 	//printf("\n");
 	//traverse();
-	*/
+	llic*/
 	for(int i=10;i>=1;i--)
 		pushFront(i);
 	traverse();
@@ -287,9 +301,11 @@ int main()
 	printf("\n");
 	traverse();
 	popFront();
+	popFront();
 	popBack();
 	if(empty())
 		printf("linked list is empty.\n");
+	topBack();
 	
 	
 	

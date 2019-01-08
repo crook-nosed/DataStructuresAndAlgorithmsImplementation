@@ -8,6 +8,7 @@ void popFront();//deletes the front element of linked list
 void pushBack(int i);
 int topBack();
 void popBack();
+bool empty();
 struct node * find(int key);
 bool boolfind(int key);
 void erase(int key);
@@ -50,9 +51,14 @@ void pushFront(int i)
 		tail->prev=newNode;
 	newNode->prev=NULL;
 }
+bool empty()
+{
+	return head==NULL ;
+}
+
 void popFront()
 {
-	if (head==NULL){
+	if (empty()){
 		printf("No element to pop\n");
 		return;
 	}
@@ -129,7 +135,7 @@ void erase(int key)
 }
 void popBack()
 {
-	if (head==NULL){
+	if (empty()){
 		printf("No element to pop\n");
 		return;
 	}
@@ -216,15 +222,25 @@ void addBefore(int keybefore,int key)
 
 int topFront()
 {
+	if(empty())
+	{
+		printf("No element at the front top.\n");
+		return 0;
+	}
 	return head->data;
 }
 int topBack()
 {
+	if(empty())
+	{
+		printf("No element at the back top.\n");
+		return 0;
+	}
 	return tail->data;
 }
 int main()
 {
-	for(int i=10;i>=1;i--)
+	/*for(int i=10;i>=1;i--)
 		pushFront(i);
 	traverse();
 	popFront();
@@ -257,7 +273,23 @@ int main()
 	traverse();
 	addBefore(2,3);
 	printf("\n");
+	traverse();*/
+	for(int i=10;i>=1;i--)
+		pushFront(i);
 	traverse();
+	popFront();
+	printf("\n");
+    traverse();	
+	for(int i=0;i<8;i++)
+		popFront();
+	printf("\n");
+	traverse();
+	popFront();
+	popFront();
+	popBack();
+	if(empty())
+		printf("linked list is empty.\n");
+	topBack();
 	
 	
 	return 0;

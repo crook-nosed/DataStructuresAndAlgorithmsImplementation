@@ -75,7 +75,7 @@ bool boolfind(int key)
 	}
 	return false;
 }
-struct node *find(int key)
+/*struct node *find(int key)
 {
 	struct node * finder= head;
 	if (head==NULL)
@@ -89,7 +89,7 @@ struct node *find(int key)
 		finder=finder->next;
 	}
 	return NULL;
-}
+}*/
 void erase(int key)
 {
 	if(boolfind(key))
@@ -229,67 +229,7 @@ int topBack()
 }
 int main()
 {
-	/*
-	PushFront(1);
-	PushFront(2);
-	PushFront(3);
-	traverse();
-	printf("\n");
-	popFront();
-	traverse();
-	printf("\n");
-	PushFront(3);
-	traverse();
-	printf("\n");
-	pushBack(1);
-	pushBack(2);
-	pushBack(3);
-	//printf("%d\n",TopFront());
-	traverse();
-	popBack();
-	printf("\n");
-	traverse();
-	popBack();
-	popFront();
-	printf("\n");
-	traverse();
-	popBack();
-	popBack();
-    traverse();
-	popFront();
-	traverse();
-	printf("\n"); */
-	/*for(int i=1;i<=10;i++)
-		pushFront(i);
-	traverse();
 	
-	printf("\n");
-	if (find(7)!=NULL)
-		printf("%d present\n",find(7)->data);
-	else
-		printf("key not found\n");
-
-	
-	for(int i=0;i<3;i++)
-		popBack();
-	traverse();
-	printf("\n");
-	addBefore(7,8);
-	traverse();
-	printf("\n");
-	erase(7);
-	
-	for(int i=0;i<5;i++)
-		popBack();
-	traverse();
-	printf("\n");
-	addAfter(10,9);
-	//popFront();
-	traverse();
-	//addBefore(9,10);
-	//printf("\n");
-	//traverse();
-	llic*/
 	for(int i=10;i>=1;i--)
 		pushFront(i);
 	traverse();
@@ -306,9 +246,5 @@ int main()
 	if(empty())
 		printf("linked list is empty.\n");
 	topBack();
-	
-	
-	
-	
 	return 0;
 }

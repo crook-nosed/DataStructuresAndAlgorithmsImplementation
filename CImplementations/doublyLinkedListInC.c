@@ -21,8 +21,8 @@ struct node
 	struct node * next;
 	struct node * prev;
 };
-struct node * head = NULL;
-struct node *tail = NULL;
+struct node* head = NULL;
+struct node* tail = NULL;
 void pushBack(int i)
 {
 	struct node * newNode2 =(struct node *)malloc(sizeof(struct node));
@@ -48,7 +48,7 @@ void pushFront(int i)
 	if(tail==NULL)
 		tail = head;
 	else
-		tail->prev=newNode;
+		newNode->next->prev=newNode;
 	newNode->prev=NULL;
 }
 bool empty()
@@ -148,12 +148,16 @@ void popBack()
 	else{
 		tail=tail->prev;
 		tail->next=NULL;
+		
 	}
+	
 }
 void traverse()
 {
-	if (head==NULL)
+	if (head==NULL){
 		printf("empty list. add elements");
+		return;
+	}
 	struct node * ptr =  head;
 	while(ptr!=NULL)
 	{
@@ -297,9 +301,10 @@ int main()
 	for(int i=0;i<4;i++)
 		pushFront(i);
 	traverse();
-	//printf("\n%d\n",topBack());
+	//cout<<endl<<q.topBack()<<endl;
 	popBack();
 	traverse();
+	
 	
 	
 	return 0;

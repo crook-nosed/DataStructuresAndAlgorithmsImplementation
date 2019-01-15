@@ -140,11 +140,15 @@ void popBack()
 		return;
 	}
 		
-	tail=tail->prev;
-	if(tail!=NULL)
-		tail->next=NULL;
-	if(tail==NULL)
+	if(head==tail)
+	{
 		head=NULL;
+		tail=NULL;
+	}
+	else{
+		tail=tail->prev;
+		tail->next=NULL;
+	}
 }
 void traverse()
 {
@@ -274,7 +278,7 @@ int main()
 	addBefore(2,3);
 	printf("\n");
 	traverse();*/
-	for(int i=10;i>=1;i--)
+	/*for(int i=10;i>=1;i--)
 		pushFront(i);
 	traverse();
 	popFront();
@@ -289,7 +293,13 @@ int main()
 	popBack();
 	if(empty())
 		printf("linked list is empty.\n");
-	topBack();
+	topBack();*/
+	for(int i=0;i<4;i++)
+		pushFront(i);
+	traverse();
+	//printf("\n%d\n",topBack());
+	popBack();
+	traverse();
 	
 	
 	return 0;

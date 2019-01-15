@@ -225,7 +225,7 @@ void DList::addBefore(int keybefore,int key)
 	}
 int main()
 {
-	DList l1;
+	/*DList l1;
 	for(int i=10;i>=1;i--)
 		l1.pushFront(i);
 	l1.traverse();
@@ -243,7 +243,14 @@ int main()
 		cout<<"linked list is empty.\n";
 	l1.topBack();
 	l1.popBack();
-	
+	*/
+	DList q;
+	for(int i=0;i<4;i++)
+		q.pushFront(i);
+	q.traverse();
+	cout<<endl<<q.topBack()<<endl;
+	q.popBack();
+	q.traverse();
 	
 	return 0;
 }

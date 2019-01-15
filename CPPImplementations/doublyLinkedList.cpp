@@ -38,7 +38,7 @@ void DList::pushFront(int i)
 	if(tail==nullptr)
 		tail = head;
 	else
-		tail->prev=newNode;
+		newNode->next->prev=newNode;
 	newNode->prev=nullptr;
 	
 }

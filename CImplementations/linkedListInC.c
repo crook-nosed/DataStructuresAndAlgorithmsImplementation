@@ -36,8 +36,8 @@ void pushBack(int i)
 	tail=newNode2;
 	if(head==NULL)
 		head=tail;
-		
-	
+
+
 }
 void pushFront(int i)
 {
@@ -45,8 +45,8 @@ void pushFront(int i)
 	newNode->data=i;
 	newNode->next=head;
 	head=newNode;
-	if(tail==NULL)
-		tail = head;
+	if(tail==NULL)//this represents the case when linked list was empty at the beginning so both head=tail=NULL but as now the new node has been added it is only natural for tail to point the only last element in the list which is the new node just added which is pointed to by head.
+		tail = head;//Thats why tail=head
 }
 void popFront()
 {
@@ -63,7 +63,7 @@ bool boolfind(int key)
 	if(head == NULL)
 		return false;
 	struct node * boolfinder = head;
-	
+
 	while(boolfinder->next!=NULL)
 	{
 		if(boolfinder->data==key)
@@ -71,7 +71,7 @@ bool boolfind(int key)
 			return true;
 		}
 		boolfinder=boolfinder->next;
-			
+
 	}
 	return false;
 }
@@ -136,7 +136,7 @@ void popBack()
 	while(ptr->next->next != NULL)
 	{
 		ptr=ptr->next;
-		
+
 	}
 	tail=ptr;
 	ptr->next=NULL;
@@ -178,13 +178,13 @@ void addAfter(int afterkey,int key)
 		}
 		ptr=ptr->next;
 	}
-	
+
 	printf("There is no %d key to add %d key before it.",afterkey,key);
-	
+
 }
 void addBefore(int keybefore,int key)
 {
-	
+
 	if(head->data==keybefore)
 	{
 		pushFront(key);
@@ -206,7 +206,7 @@ void addBefore(int keybefore,int key)
 		ptrprev=ptrprev->next;
 	}
 	printf("There is no %d key to add %d key before it.",keybefore,key);
-		
+
 	}
 
 int topFront()
@@ -229,13 +229,13 @@ int topBack()
 }
 int main()
 {
-	
+
 	for(int i=10;i>=1;i--)
 		pushFront(i);
 	traverse();
 	popFront();
 	printf("\n");
-    traverse();	
+    traverse();
 	for(int i=0;i<8;i++)
 		popFront();
 	printf("\n");

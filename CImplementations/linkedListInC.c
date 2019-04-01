@@ -34,7 +34,7 @@ void pushBack(int i)
 	if(tail!=NULL)
 		tail->next=newNode2;
 	tail=newNode2;
-	if(head==NULL)
+	if(head==NULL)//This represents the case of calling pushBack when the linked list was emmpty previously i.e before pushing back.
 		head=tail;
 
 
@@ -55,8 +55,8 @@ void popFront()
 		return;
 	}
 	head=head->next;
-	if(head==NULL)
-		tail=NULL;
+	if(head==NULL)// This again represents the condition if before deletion only one node was present.
+		tail=NULL;// after deletion in this case head will point to NULL. So should the tail.
 }
 bool boolfind(int key)
 {

@@ -10,8 +10,8 @@ class Stack{
 	};
 	Node * head;
 	Node * tail;
-	
-	
+
+
 	public:
 	Stack();
 	void Push(int i);// pushes or inserts item in the front of the stack
@@ -86,7 +86,12 @@ int main()
 	Stack s;
 	for (int i=0;i<5;i++)
 	    s.Push(i);
-	cout<<s.Top()<<endl;
+	std::cout<<s.Top()<<std::endl;
 	s.traverse();
-	 return 0;
+  for(int i=0;i<5;i++){
+  std::cout<<s.Pop()<<" ";
+  std::cout<<"\n";
+}
+s.Pop();
+
 }

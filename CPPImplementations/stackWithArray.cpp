@@ -63,7 +63,12 @@ int main()
 {
 	StackA s;
 	for (int i=0;i<5;i++)
-	    s.Push(i);
+  {
+    std::cin>>i;
+    s.Push(i);
+
+  }
+
 	std::cout<<s.Top()<<std::endl;
 	s.traverse();
   for(int i=0;i<5;i++){

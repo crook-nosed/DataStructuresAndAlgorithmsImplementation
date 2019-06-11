@@ -48,8 +48,10 @@ int DynamicArray::Get(int i)
 
 void DynamicArray::Set(int i,int value)
 {
-  if(i<0||i>=size)
+  if(i<0||i>=size){
      cout<<"ERROR:index out of range\n";
+     return;
+   }
   arr[i]=value;
 
 }
@@ -71,7 +73,10 @@ void DynamicArray::Remove(int i)
     free(arr);
     capacity/=2;
     arr= new int[capacity];
-    arr=tempArr;
+    for(int i=0;i<capacity;i++)
+    {
+      arr[i]=tempArr[i];
+    }
     free(tempArr);
   }
 
@@ -82,16 +87,21 @@ void DynamicArray::PushBack(int i)
   if(size==capacity)
   {
     tempArr = new int[2*capacity];
-    for(int i=0;i<size-1;i++)
+    for(int i=0;i<size;i++)
     {
       tempArr[i]=arr[i];
     }
     free(arr);
-
-    // arr = new int[capacity];
-    arr = tempArr;
     capacity*=2;
-    // free(tempArr);
+    arr = new int[capacity];
+    // the following for loop represents deep copy of temporary array. previously i was doing shallow copy which was causing logical errors.shallow copy cn be done easily by assignment operator as shown below:
+    // arr=tempArr;-->don't do this
+    for(int i=0;i<capacity;i++)
+    {
+      arr[i]=tempArr[i];
+    }
+
+    free(tempArr);
   }
   arr[size]=i;
   size++;
@@ -112,21 +122,27 @@ int main()
   int num,val;
   cin>>num;
   DynamicArray vec(num);
-  vec.PushBack(1);
-  vec.PushBack(2);
-  vec.PushBack(3);
-  vec.PushBack(4);
-  vec.PushBack(5);
-  cout<<vec.currentSize()<<" "<<vec.currentCapacity()<<endl;
-  for(int i=0;i<5;i++)
-  {
-    cout<<vec.Get(i)<<endl;
-  }
-
-  // cout<<"Current Size is: "<<vec.currentSize()<<" "<<"And current capacity is: "<<vec.currentCapacity()<<"\n";
-  // for(int i=0;i<15;i++)
+  // vec.PushBack(1);
+  // vec.PushBack(2);
+  // vec.PushBack(3);
+  // vec.PushBack(4);
+  // vec.PushBack(5);
+  // cout<<vec.currentSize()<<" "<<vec.currentCapacity()<<endl;
+  // for(int i=0;i<5;i++)
   // {
-  //   cout<<vec.Get(i)<<"\n";
+  //   cout<<vec.Get(i)<<endl;
   // }
+
+  cout<<"Current Size is: "<<vec.currentSize()<<" "<<"And current capacity is: "<<vec.currentCapacity()<<"\n";
+  for(int i=0;i<15;i++)
+  {
+    vec.Set(i,i);
+  }
+  for (size_t i = 0; i < 15; i++) {
+    /* code */
+    cout<<vec.Get(i)<<"\n";
+
+
+  }
   return 0;
 }

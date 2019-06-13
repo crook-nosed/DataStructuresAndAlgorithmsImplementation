@@ -17,8 +17,14 @@ public:
   void PushBack(int i);
   int currentSize();
   int currentCapacity();
+  bool isEmpty();
+  void capacityDoubler();
+  void capacityDivider();
 };
-
+bool DynamicArray::isEmpty()
+{
+  return size==0;
+}
 DynamicArray::DynamicArray()
 {
  capacity = 1;
@@ -40,19 +46,32 @@ DynamicArray::DynamicArray(int cap)
 
 int DynamicArray::Get(int i)
 {
-  if(i<0||i>=size)
+  if(i<0||i>=size){
      cout<<"ERROR:index out of range\n";
+     return 0;
+   }
   return arr[i];
 
 }
 
 void DynamicArray::Set(int i,int value)
 {
+  if(size==capacity)
+  {
+    capacityDoubler();
+  }
+  if(isEmpty()||i==value)
+  {
+    arr[i]=value;
+    size++;
+    return;
+  }
   if(i<0||i>=size){
      cout<<"ERROR:index out of range\n";
      return;
    }
   arr[i]=value;
+  size++;
 
 }
 
@@ -86,25 +105,30 @@ void DynamicArray::PushBack(int i)
 {
   if(size==capacity)
   {
-    tempArr = new int[2*capacity];
-    for(int i=0;i<size;i++)
-    {
-      tempArr[i]=arr[i];
-    }
-    free(arr);
-    capacity*=2;
-    arr = new int[capacity];
-    // the following for loop represents deep copy of temporary array. previously i was doing shallow copy which was causing logical errors.shallow copy cn be done easily by assignment operator as shown below:
-    // arr=tempArr;-->don't do this
-    for(int i=0;i<capacity;i++)
-    {
-      arr[i]=tempArr[i];
-    }
-
-    free(tempArr);
+    capacityDoubler();
   }
   arr[size]=i;
   size++;
+}
+
+void DynamicArray::capacityDoubler()
+{
+  tempArr = new int[2*capacity];
+  for(int i=0;i<size;i++)
+  {
+    tempArr[i]=arr[i];
+  }
+  free(arr);
+  capacity*=2;
+  arr = new int[capacity];
+  // the following for loop represents deep copy of temporary array. previously i was doing shallow copy which was causing logical errors.shallow copy cn be done easily by assignment operator as shown below:
+  // arr=tempArr;-->don't do this
+  for(int i=0;i<capacity;i++)
+  {
+    arr[i]=tempArr[i];
+  }
+
+  free(tempArr);
 }
 
 int DynamicArray::currentSize()
@@ -141,8 +165,8 @@ int main()
   for (size_t i = 0; i < 15; i++) {
     /* code */
     cout<<vec.Get(i)<<"\n";
-
-
   }
+    cout<<"Current Size is: "<<vec.currentSize()<<" "<<"And current capacity is: "<<vec.currentCapacity()<<"\n";
+  // vec.Remove()
   return 0;
 }

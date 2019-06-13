@@ -82,6 +82,10 @@ void DynamicArray::Remove(int i)
   for(int j=i;j<=size;j++)
       arr[j]=arr[j+1];
   size--;
+  // to dos:
+  // 1. size%2==0 condition should be removed rather size==capacity/2 condition should be added.
+  // 2. here when we use parameterized constructor above we may provide numbers like 6 so if we half that number through the below code
+  //    then we should be careful that the capacity of array should never be even so we should make the capacity +1 as in the parameterized constructor
   if(size%2==0)
   {
     tempArr = new int[(capacity/2)];

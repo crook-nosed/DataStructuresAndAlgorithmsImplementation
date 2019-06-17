@@ -301,13 +301,13 @@ void DynamicArray::capacityDoubler()
 void DynamicArray::capacityDivider()
 {
     tempArr = new int[(capacity/2)];
-    for(int i=0;i<size-1;i++)
+    for(int i=0;i<size;i++)
     {
       tempArr[i]=arr[i];
     }
     free(arr);
     capacity/=2;
-    if(capacity%2!=0)
+    if(capacity%2!=0 && capacity!=1)
     {
       cout<<"Warning: capacity cannot be odd making it: "<<capacity+1<<endl;
       capacity++;

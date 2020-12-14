@@ -1,0 +1,1 @@
+# Beginning stuff to setup the tools for c programming in linux specially
